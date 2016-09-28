@@ -1,0 +1,120 @@
+DATABASES
+
+Objectives:
+	Recall the Structure of a relational database
+	Explain the three types of database anomalies
+	Identify the three different types of Relationships that can exist between data
+	Create a database schema that is in third normal form
+
+Overview:
+	Relational databases most frequently used
+		MySQL
+		MsSQL
+		Oracle
+		SQLite
+	Non relational databases do exist
+		BerkleyDB
+		mongoDB
+
+Relational Database Systems
+	Databases contain tables
+	Tables contain columns which organize data
+	Tables store their data in rows
+	To interact with a relational database one uses the Structured Query Language
+	Each table should have a primary key, prim key used to uniquely identify a single row in a table
+
+Structuring Data
+	Insure the data is reliable stored, ensure the following doesnt occur:
+		Update Anomalies
+		Deletion Anomalies
+		Insertion Anomalies
+	Must normalize the structure of the database
+
+Data Relationships
+	One-to-One:
+		Each person has only one birthday
+		Generally stored in the same table
+	One-to-Many:
+		Each person has many clothes
+		Separate table used to store the clothes
+	Many-to-Many:
+		Each person has many friends
+		Separate "join table" is used to track the relationship data
+
+Video Game Example:
+	Track the games each person plays (atomic = one value)
+		Game Name -- Atomic
+		System -- Atomic
+		Name of Person -- First name and Last Name
+		Gamertag -- atomic
+		Rating of Game -- atomic
+		Hours Played -- atomic
+	1) Ensure Atomic
+	2) Identify Tables (ID is primary key, pretend its underlines)
+		People(ID, firstName, lastName, gamerTag)
+		Games(ID, name, rating, system)
+		Systems(ID, name)
+		people-systems(personID, systemID) --dashed underline to denote foreign keys
+		games-people(gameID, personID, hoursplayed)
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+Jim the student needs to track all of his assignments He needs to track the class, the details of the assignment, and the due date
+
+assignments(id, details, duedate, class_id)
+classes(id, name)
+
+
+
+Sally the employer has a number of employees she needs to track the number of hours they work, their name, address, hourly rate, and the days they work.
+
+employees(id, firstname, lastname, hourlyrate, address, city, state, zip, )
+worklog(id, employee_id, hours, dayWorked)
+
+FUN FACT: dates are stored in YYYY-MM-DD
+20061015<2016915
+
+Unix computers time starts at 01/01/1970
+
+
+Jake the Baker needs to keep track of food items in the kitchen. He also needs to track his recipes and what food items are used in which recipes.
+
+foods(name, numberOfFood, expirationdate, units)
+recipes(id, name, instructions)
+foods-recipes(foodname, recipeid, numberOfFood, unit)
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+Column Datatypes
+	TEXT
+	INTEGER
+	REAL
+
+CREATE TABLE tbl_name
+(
+	col_name datatype, ...
+);
+
+CREATE TABLE person
+(
+	firstName TEXT,
+	lastName TEXT,
+	Age INT
+);
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+Combine database and python with CRUD
+
+crud is common programming task wheree we need to allow the common user to interact with the database
+	Create (INSERT)
+	Read (SELECT)
+	Update (UPDATE)
+	Delete (DELETE)
+
+1. First we display a list of rows from a table in the database
+2. Them we allow the user to choose an action from above 	 
